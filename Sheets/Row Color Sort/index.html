@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base target="_top">
+    </head>
+    <body>
+        <div id="Progress"></div>
+    </body>
+    <script type="text/javascript">
+
+        document.getElementById("Progress").innerHTML = "Waiting on server...";
+        var message;
+        
+        function onCompletion(processing) {
+            if (processing === "false") {
+                google.script.host.close();
+            } 
+        } // Closes client side html once loop on server is finished
+        
+        async function showProgress() {
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            while (true) {
+                message = "Processing rows";
+                for (var i = 0; i < 6; i++) {
+                    message += ".";
+                    document.getElementById("Progress").innerHTML = message;
+                    google.script.run.withSuccessHandler(onCompletion).isProcessing();
+                    await new Promise(resolve => setTimeout(resolve, 200));
+                }   
+            }
+        } // Shows simple screen on client while server is processing rows
+        
+        showProgress();
+    
+    </script>
+</html>
