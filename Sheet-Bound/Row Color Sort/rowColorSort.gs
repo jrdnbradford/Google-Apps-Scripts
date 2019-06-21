@@ -1,11 +1,11 @@
 /* 
-   Google Sheet-bound script that creates a column that allows sorting rows by color
-   License: MIT (c) 2019 Jordan Bradford
-   GitHub: jrdnbradford
+Google Sheet-bound script that creates a column that allows sorting rows by color
+License: MIT (c) 2019 Jordan Bradford
+GitHub: jrdnbradford
    
-   Recommended OAuth Scopes:
-   https://www.googleapis.com/auth/spreadsheets.currentonly
-   https://www.googleapis.com/auth/script.container.ui
+Recommended OAuth Scopes:
+https://www.googleapis.com/auth/spreadsheets.currentonly
+https://www.googleapis.com/auth/script.container.ui
 */
 
 
