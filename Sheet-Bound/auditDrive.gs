@@ -15,6 +15,7 @@ https://www.googleapis.com/auth/spreadsheets.currentonly
 
 var ss = SpreadsheetApp.getActiveSpreadsheet();
 var sheet = ss.getActiveSheet();
+var rows = [];
 
 
 function onOpen() {
@@ -26,11 +27,16 @@ function onOpen() {
 
 
 
-function auditDrive() { 
-    sheet.appendRow(["File", "Folder", "Access", "Permission", "Editors", "Viewers"]);
+function auditDrive() {   
     var root = DriveApp.getRootFolder();  
     createSheetRows(root.getFiles(), "Root Drive");
     getChildFolders(root); 
+    
+    sheet.clear();
+    sheet.appendRow(["File", "Folder", "Access", "Permission", "Editors", "Viewers"]);
+    sheet.getRange(2, 1, rows.length, 6)
+         .setValues(rows);
+    
     formatSheet(); 
     var url = ss.getUrl();
     sendEmail(url);
@@ -60,7 +66,7 @@ function createSheetRows(fileIter, folderName) {
         var editorEmails = getEmails(file.getEditors());
         var viewerEmails = getEmails(file.getViewers());
         //Logger.log(fileName + folderName + access + permission + editorEmails + viewerEmails);
-        sheet.appendRow([fileName, folderName, access, permission, editorEmails, viewerEmails]);
+        rows.push([fileName, folderName, access, permission, editorEmails, viewerEmails]);
     }
 } 
 
