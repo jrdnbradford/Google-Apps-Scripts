@@ -93,7 +93,7 @@ function getEmails(users) {
     if (users.length >= 1) {
         var emails = [];
         for (var i = 0; i < users.length; i++) {
-        emails.push(users[i].getEmail());
+            emails.push(users[i].getEmail());
         } return emails.join(",");
     } else {return "None";}
 }
