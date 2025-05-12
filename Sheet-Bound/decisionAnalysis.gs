@@ -260,8 +260,8 @@ function addConditionalFormat() {
             var rule = buildCondFormatRule(cellToFormatA1, minRowSolutionA1, "lightblue", cellToFormatRange);
             rules.push(rule);
         }   
-        dataSheet.setConditionalFormatRules(rules);
     } 
+    dataSheet.setConditionalFormatRules(rules);
 }
 
 
